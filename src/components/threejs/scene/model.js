@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-16 14:23:14
+ * @LastEditTime: 2021-12-16 15:57:19
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
@@ -14,9 +14,6 @@ import {
 import {
   ExtrudeMesh
 } from './ExtrudeMesh.js';
-import {
-  flyGroup
-} from './flyGroup.js';
 
 var model = new THREE.Group(); //声明一个组对象，用来添加城市三场场景的模型对象
 var loader = new THREE.FileLoader();
@@ -38,14 +35,13 @@ loader.load('./黄浦江.json', function (data) {
         // 把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
         build.geometry.coordinates = [build.geometry.coordinates];
       }
-      buildGroup.add(ShapeMesh(build.geometry.coordinates));
+      var mesh = ShapeMesh(build.geometry.coordinates)
+      mesh.name = "黄浦江";//设置name属性，模型导出的时候，可以携带该信息
+      buildGroup.add(mesh);
     }
   });
   model.add(buildGroup);
 });
-
-
-model.add(flyGroup);
 
 
 

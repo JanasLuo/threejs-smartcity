@@ -31,9 +31,10 @@
           background: rgba(0, 0, 0, 0.25);
           border-radius: 40px;
           padding: 10px 20px;
-          margin-left: 1370px;
+          margin-left: 1130px;
         "
       >
+        <button  id="exportGLTF" style="margin-right: 10px;">导出模型</button>
         <div
           style="
             background: rgba(255, 0, 0, 0);
@@ -104,8 +105,16 @@
 </template>
 
 <script>
+import  { exportGLTF } from './threejs/scene/exportGLTF.js'
+import  { model } from './threejs/scene/model.js'
 export default {
   name: "PageHeader",
+  mounted: function () {
+    var button = document.getElementById('exportGLTF');
+    button.addEventListener('click',function(){
+      exportGLTF(model);
+    })
+  },
 };
 </script>
 

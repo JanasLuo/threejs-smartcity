@@ -1,11 +1,26 @@
+/*
+ * @Author: janasluo
+ * @Date: 2021-11-17 19:31:08
+ * @LastEditTime: 2021-12-16 16:14:41
+ * @LastEditors: janasluo
+ * @Description: 
+ * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/index.js
+ */
 // 场景总文件
 // 引入Three.js
 import * as THREE from 'three';
 import {
-    model
+  model
 } from './model.js';
+
+// import {
+//   model
+// } from './loadGLTFModel.js';
 import {
-    lon2xy
+  flyGroup
+} from './flyGroup.js';
+import {
+  lon2xy
 } from './math.js';
 
 
@@ -14,6 +29,7 @@ import {
  */
 var scene = new THREE.Scene();
 scene.add(model); //三维模型添加到场景中
+scene.add(flyGroup); //gltf飞机模型添加到场景中
 /**
  * 光源设置
  */
@@ -50,5 +66,5 @@ scene.add(axesHelper);
 
 
 export {
-    scene
+  scene
 };

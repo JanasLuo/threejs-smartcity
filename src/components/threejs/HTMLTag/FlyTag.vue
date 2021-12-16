@@ -1,3 +1,11 @@
+<!--
+ * @Author: janasluo
+ * @Date: 2021-11-17 21:03:42
+ * @LastEditTime: 2021-12-16 15:59:50
+ * @LastEditors: janasluo
+ * @Description: 
+ * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/HTMLTag/FlyTag.vue
+-->
 <template>
   <div id="flytag" style="display: none; z-index: 20; width: 190px">
     <div
@@ -26,7 +34,6 @@
 <script>
 // {  CSS3DObject,CSS3DSprite }
 import { CSS3DSprite } from "three/examples/jsm/renderers/CSS3DRenderer.js";
-import { model } from "../scene/model.js";
 import { flyGroup } from "../scene/flyGroup.js"; // 无人机模型
 import { lon2xy } from "../scene/math.js";
 export default {
@@ -39,7 +46,6 @@ export default {
     };
   },
   mounted: function () {
-    model.add(flyGroup);
     var xy = lon2xy(this.E, this.N);
     var x = xy.x;
     var y = xy.y;
