@@ -3,8 +3,7 @@
  * @Date: 2021-11-17 18:00:10
  * @LastEditTime: 2021-12-14 16:05:37
  * @LastEditors: janasluo
- * @Description: 
- * @FilePath: /test/Users/janas/work/study/three.js 郭隆邦/Three.js智慧城市Web3D可视化/9.方案科普课—城市或园区3D场景和大屏可视化图表结合/1.城市3D场景和大屏可视化图表结合/案例源码/city/src/components/threejs/scene/messageTag.js
+ * @Description: html标签渲染
  */
 import { CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 // 创建一个HTML标签

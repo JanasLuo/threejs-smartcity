@@ -1,7 +1,7 @@
 <!--
  * @Author: janasluo
  * @Date: 2021-11-17 21:03:42
- * @LastEditTime: 2021-12-16 15:59:50
+ * @LastEditTime: 2021-12-16 17:00:18
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/HTMLTag/FlyTag.vue
@@ -35,7 +35,6 @@
 // {  CSS3DObject,CSS3DSprite }
 import { CSS3DSprite } from "three/examples/jsm/renderers/CSS3DRenderer.js";
 import { flyGroup } from "../scene/flyGroup.js"; // 无人机模型
-import { lon2xy } from "../scene/math.js";
 export default {
   name: "flyTag",
   data: function () {
@@ -46,11 +45,7 @@ export default {
     };
   },
   mounted: function () {
-    var xy = lon2xy(this.E, this.N);
-    var x = xy.x;
-    var y = xy.y;
-    // 设置无人机坐标
-    flyGroup.position.set(x, y, this.height);
+   
 
     var label = tag(300); //创建标签对象
     label.position.set(-8, 85, -45); // 标签对象和mesh对象一样可以设置位置，可以根据需要偏移位置

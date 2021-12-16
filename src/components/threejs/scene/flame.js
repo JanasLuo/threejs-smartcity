@@ -1,10 +1,18 @@
+/*
+ * @Author: janasluo
+ * @Date: 2021-11-17 20:51:38
+ * @LastEditTime: 2021-12-16 16:42:29
+ * @LastEditors: janasluo
+ * @Description: 火焰
+ */
+
 // 引入Three.js
 import * as THREE from 'three';
 // 创建一个火焰动画
 // size：火焰尺寸   name:失火相关信息
 function createFlame(size) {
   // 矩形平面网格模型，用来渲染火焰的动画效果
-  var w = size/1.6; //火焰宽度  通过参数w可以快速调节火焰大小，以便于适应对应的三维场景
+  var w = size / 1.6; //火焰宽度  通过参数w可以快速调节火焰大小，以便于适应对应的三维场景
   var h = size; //火焰高度
   var geometry = new THREE.PlaneBufferGeometry(w, h); //矩形平面
   geometry.translate(0, h / 2, 0); //火焰底部中点和局部坐标系坐标原点重合

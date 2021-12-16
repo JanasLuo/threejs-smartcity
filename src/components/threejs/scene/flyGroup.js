@@ -1,3 +1,11 @@
+/*
+ * @Author: janasluo
+ * @Date: 2021-11-18 09:42:42
+ * @LastEditTime: 2021-12-16 17:06:32
+ * @LastEditors: janasluo
+ * @Description: 
+ * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/flyGroup.js
+ */
 import * as THREE from 'three';
 
 
@@ -5,7 +13,13 @@ import {
   GLTFLoader
 } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
+import {
+  lon2xy
+} from './math.js';
 
+import {
+  createLightSphereMesh
+} from './lightSphereMesh.js';
 import {
   createSignalMesh
 } from './signalMesh.js';
@@ -14,8 +28,10 @@ import {
 
 var flyGroup = new THREE.Group() // 一架无人机
 
-
+var LightSphereMesh = createLightSphereMesh(120);
+flyGroup.add(LightSphereMesh);
 var SignalMesh = createSignalMesh();
+console.log('SignalMesh', SignalMesh)
 flyGroup.add(SignalMesh);
 
 var mixer = null; //声明一个混合器变量
@@ -60,6 +76,16 @@ function UpdateLoop() {
 }
 UpdateLoop();
 
+// 一直无人机数据：经纬度和高度
+var height = 400; //无人机飞行高度300米
+var E = 121.49926536464691; //无人机经纬度坐标
+var N = 31.24289350905988;
+
+var xy = lon2xy(E, N);
+var x = xy.x;
+var y = xy.y;
+// 设置无人机坐标
+flyGroup.position.set(x, y, height);
 
 
 
