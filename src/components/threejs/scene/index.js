@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 19:31:08
- * @LastEditTime: 2021-12-16 17:09:05
+ * @LastEditTime: 2021-12-16 17:27:02
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/index.js
@@ -22,7 +22,7 @@ import {
 import {
   lon2xy
 } from './math.js';
-
+console.log('flyGroup', flyGroup)
 
 /**
  * 创建场景对象Scene

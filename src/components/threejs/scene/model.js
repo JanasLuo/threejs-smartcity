@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-16 16:54:37
+ * @LastEditTime: 2021-12-16 17:24:08
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
@@ -14,6 +14,7 @@ import {
 import {
   ExtrudeMesh
 } from './ExtrudeMesh.js';
+import { radarGroup } from './radarGroup.js'
 import {
   flyGroup
 } from './flyGroup.js';
@@ -45,7 +46,8 @@ loader.load('./黄浦江.json', function (data) {
   model.add(buildGroup);
 });
 
-
+console.log('radarGroup', radarGroup)
+model.add(radarGroup);
 // model.add(flyGroup);
 
 
