@@ -1,5 +1,17 @@
+/*
+ * @Author: janasluo
+ * @Date: 2021-11-17 18:01:08
+ * @LastEditTime: 2021-12-16 14:36:59
+ * @LastEditors: janasluo
+ * @Description: 
+ * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/ExtrudeMesh.js
+ */
 // 引入three.js
 import * as THREE from 'three';
+// 几何体辅助合并工具
+import {
+  mergeBufferGeometries
+} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import {
   lon2xy
 } from './math.js';
@@ -29,8 +41,32 @@ material.onBeforeCompile = function (shader) {
   );
   shader.fragmentShader = shader.fragmentShader.replace('#include <output_fragment>', output_fragment);
 };
+
+// data：GeoJSON建筑数据
+function ExtrudeMesh(data) {
+  var geoArr = []; //所有建筑物的几何体集合
+  data.features.forEach(build => {
+    if (build.geometry) {
+      // build.geometry.type === "Polygon"表示建筑物底部包含一个多边形轮廓
+      //build.geometry.type === "MultiPolygon"表示建筑物底部包含多个多边形轮廓
+      if (build.geometry.type === "Polygon") {
+        // 把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
+        build.geometry.coordinates = [build.geometry.coordinates];
+      }
+      //build.properties.Floor*3近似表示楼的高度  
+      var height = build.properties.Floor * 3;
+      geoArr.push(ExtrudeGeo(build.geometry.coordinates, height));
+    }
+  });
+
+  // 所有几何体合并为一个几何体
+  var geometry = mergeBufferGeometries(geoArr);
+  var mesh = new THREE.Mesh(geometry, material); //网格模型对象
+  return mesh;
+}
+
 // pointsArrs：多个轮廓，一个轮廓对应pointsArrs的一个元素
-function ExtrudeMesh(pointsArrs, height) {
+function ExtrudeGeo(pointsArrs, height) {
   var shapeArr = []; //轮廓形状Shape集合
   pointsArrs.forEach(pointsArr => {
     var vector2Arr = [];
@@ -51,8 +87,7 @@ function ExtrudeMesh(pointsArrs, height) {
       bevelEnabled: false, //无倒角
     }
   );
-  var mesh = new THREE.Mesh(geometry, material); //网格模型对象
-  return mesh;
+  return geometry;
 }
 export {
   ExtrudeMesh
