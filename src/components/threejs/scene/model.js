@@ -1,10 +1,10 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-14 18:11:32
+ * @LastEditTime: 2021-12-16 14:23:14
  * @LastEditors: janasluo
  * @Description: 
- * @FilePath: /test/Users/janas/work/study/three.js 郭隆邦/Three.js智慧城市Web3D可视化/9.方案科普课—城市或园区3D场景和大屏可视化图表结合/1.城市3D场景和大屏可视化图表结合/案例源码/city/src/components/threejs/scene/model.js
+ * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
  */
 // 引入Three.js
 import * as THREE from 'three';
@@ -39,7 +39,7 @@ loader.load('./上海外滩.json', function (data) {
       buildGroup.add(ExtrudeMesh(build.geometry.coordinates, height));
     }
   });
-  // model.add(buildGroup);
+  model.add(buildGroup);
 });
 // 黄浦江
 loader.load('./黄浦江.json', function (data) {
