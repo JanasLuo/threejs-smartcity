@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-16 17:24:08
+ * @LastEditTime: 2021-12-16 22:42:24
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
@@ -15,9 +15,9 @@ import {
   ExtrudeMesh
 } from './ExtrudeMesh.js';
 import { radarGroup } from './radarGroup.js'
-import {
-  flyGroup
-} from './flyGroup.js';
+// import {
+//   flyGroup
+// } from './flyGroup.js';
 var model = new THREE.Group(); //声明一个组对象，用来添加城市三场场景的模型对象
 var loader = new THREE.FileLoader();
 loader.setResponseType('json')
