@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 18:01:08
- * @LastEditTime: 2021-12-16 14:36:59
+ * @LastEditTime: 2021-12-20 16:22:07
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/ExtrudeMesh.js
@@ -22,9 +22,14 @@ var material = new THREE.MeshLambertMaterial({
   color: 0x00ffff, //颜色
 });
 // GPU执行material对应的着色器代码前，通过.onBeforeCompile()插入新的代码，修改已有的代码
+var materialShader = null;
 material.onBeforeCompile = function (shader) {
   // 浏览器控制台打印着色器代码
   // console.log('shader.fragmentShader', shader.fragmentShader)
+  materialShader = shader;
+  shader.uniforms.time = {
+    value: 0.0,
+  };
   // 顶点位置坐标position类似uv坐标进行插值计算，用于在片元着色器中控制片元像素
   shader.vertexShader = shader.vertexShader.replace(
     'void main() {',
@@ -36,6 +41,7 @@ material.onBeforeCompile = function (shader) {
   shader.fragmentShader = shader.fragmentShader.replace(
     'void main() {',
     ['varying vec3 vPosition;',
+      'uniform float time;',
       'void main() {',
     ].join('\n')
   );
@@ -90,5 +96,5 @@ function ExtrudeGeo(pointsArrs, height) {
   return geometry;
 }
 export {
-  ExtrudeMesh
+  ExtrudeMesh, materialShader
 };

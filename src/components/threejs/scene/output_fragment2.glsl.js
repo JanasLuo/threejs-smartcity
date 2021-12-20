@@ -1,11 +1,3 @@
-/*
- * @Author: janasluo
- * @Date: 2021-11-11 13:50:52
- * @LastEditTime: 2021-12-20 16:23:14
- * @LastEditors: janasluo
- * @Description: 
- * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/output_fragment.glsl.js
- */
 export default /* glsl */ `
 #ifdef OPAQUE
 diffuseColor.a = 1.0;
@@ -15,14 +7,7 @@ diffuseColor.a = 1.0;
 #ifdef USE_TRANSMISSION
 diffuseColor.a *= transmissionAlpha + 0.1;
 #endif
-// 楼高范围[0,354]
-// 线性渐变
-// vec3 gradient = mix(vec3(0.0,0.1,0.1), vec3(0.0,1.0,1.0), vPosition.z/354.0);
-// 非线性渐变  小部分楼层太高，不同高度矮楼层颜色对比不明显,可以采用非线性渐变方式调节
-vec3 gradient = mix(vec3(0.0,0.1,0.1), vec3(0.0,1.0,1.0), sqrt(vPosition.z/354.0));
 
-// 在光照影响明暗的基础上，设置渐变
-outgoingLight = outgoingLight*gradient;
 
 
 float x0 = 13520747.0+time*1200.0;
