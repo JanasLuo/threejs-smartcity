@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 19:31:08
- * @LastEditTime: 2021-12-16 17:27:02
+ * @LastEditTime: 2021-12-20 16:09:35
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/index.js
@@ -55,15 +55,9 @@ axesHelper.position.set(x, y, 0);
 scene.add(axesHelper);
 
 
-// var geometry = new THREE.BoxGeometry(500, 500, 500); //创建一个长方体几何对象Geometry
-// var material = new THREE.MeshLambertMaterial({
-//   color: 0x00ffff, //颜色
-// }); //材质对象Material
-// var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
-// scene.add(mesh); //网格模型添加到model中
-// mesh.position.set(x, y, 0);
-
-
+// 设置雾化效果，雾的颜色和背景颜色相近，这样远处三维场景和背景颜色融为一体
+// 结合相机参数设置Fog的参数2(near)和参数3(far)
+scene.fog = new THREE.Fog(0x001111, 10, 12000);
 export {
   scene
 };
