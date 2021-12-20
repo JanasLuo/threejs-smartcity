@@ -12,8 +12,8 @@ import {
   lon2xy
 } from './math.js';
 import {
-  ShapeMesh
-} from './ShapeMesh.js';
+  WaterShapeMesh
+} from './WaterShapeMesh.js';
 import {
   ExtrudeMesh
 } from './ExtrudeMesh.js';
@@ -43,7 +43,7 @@ loader.load('./黄浦江.json', function (data) {
         // 把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
         build.geometry.coordinates = [build.geometry.coordinates];
       }
-      var mesh = ShapeMesh(build.geometry.coordinates)
+      var mesh = WaterShapeMesh(build.geometry.coordinates)
       mesh.name = "黄浦江";//设置name属性，模型导出的时候，可以携带该信息
       buildGroup.add(mesh);
     }

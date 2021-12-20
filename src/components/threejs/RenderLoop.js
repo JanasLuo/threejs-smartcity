@@ -16,7 +16,7 @@ import {
 } from './scene/ExtrudeMesh.js'
 import {
   materialShader2
-} from './scene/ShapeMesh.js'
+} from './scene/WaterShapeMesh.js'
 // 渲染循环
 // 渲染循环
 
