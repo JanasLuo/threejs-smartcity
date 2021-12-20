@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-16 22:42:24
+ * @LastEditTime: 2021-12-17 18:10:50
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
@@ -9,15 +9,20 @@
 // 引入Three.js
 import * as THREE from 'three';
 import {
+  lon2xy
+} from './math.js';
+import {
   ShapeMesh
 } from './ShapeMesh.js';
 import {
   ExtrudeMesh
 } from './ExtrudeMesh.js';
-import { radarGroup } from './radarGroup.js'
-// import {
-//   flyGroup
-// } from './flyGroup.js';
+import { createRadarGroup } from './radarGroup.js'
+import { createCylinderMesh } from './cylinderMesh.js'
+import {
+  createConeMesh
+} from './ConeMesh.js';
+
 var model = new THREE.Group(); //声明一个组对象，用来添加城市三场场景的模型对象
 var loader = new THREE.FileLoader();
 loader.setResponseType('json')
@@ -45,12 +50,12 @@ loader.load('./黄浦江.json', function (data) {
   });
   model.add(buildGroup);
 });
-
-console.log('radarGroup', radarGroup)
+const radarGroup = createRadarGroup()
 model.add(radarGroup);
-// model.add(flyGroup);
+model.add(createCylinderMesh())
 
-
+var ConeMesh = createConeMesh(40, lon2xy(121.49726536464691, 31.24119350905988), 250);
+model.add(ConeMesh);
 
 export {
   model

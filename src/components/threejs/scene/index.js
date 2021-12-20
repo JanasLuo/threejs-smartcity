@@ -22,7 +22,6 @@ import {
 import {
   lon2xy
 } from './math.js';
-console.log('flyGroup', flyGroup)
 
 /**
  * 创建场景对象Scene
