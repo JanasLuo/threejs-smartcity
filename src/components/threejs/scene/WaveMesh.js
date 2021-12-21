@@ -1,3 +1,10 @@
+/*
+ * @Author: janasluo
+ * @Date: 2021-11-18 09:42:42
+ * @LastEditTime: 2021-12-21 10:29:57
+ * @LastEditors: janasluo
+ * @Description: 水波纹动效
+ */
 // 引入three.js
 import * as THREE from 'three';
 

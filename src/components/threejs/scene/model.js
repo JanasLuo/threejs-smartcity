@@ -22,6 +22,14 @@ import { createCylinderMesh } from './cylinderMesh.js'
 import {
   createConeMesh
 } from './ConeMesh.js';
+import {
+  wallGroup
+} from './wallGroup.js';
+
+import {
+  wallGroup as wallGroup2
+} from './wallGroup2.js';
+
 
 var model = new THREE.Group(); //声明一个组对象，用来添加城市三场场景的模型对象
 var loader = new THREE.FileLoader();
@@ -57,6 +65,8 @@ model.add(createCylinderMesh())
 var ConeMesh = createConeMesh(40, lon2xy(121.49726536464691, 31.24119350905988), 250);
 model.add(ConeMesh);
 
+model.add(wallGroup)
+model.add(wallGroup2)
 export {
   model
 }

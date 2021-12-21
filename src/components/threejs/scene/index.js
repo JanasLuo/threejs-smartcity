@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 19:31:08
- * @LastEditTime: 2021-12-20 16:09:35
+ * @LastEditTime: 2021-12-21 17:37:54
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/index.js
@@ -57,7 +57,7 @@ scene.add(axesHelper);
 
 // 设置雾化效果，雾的颜色和背景颜色相近，这样远处三维场景和背景颜色融为一体
 // 结合相机参数设置Fog的参数2(near)和参数3(far)
-scene.fog = new THREE.Fog(0x001111, 10, 12000);
+scene.fog = new THREE.Fog(0x001111, 10, 20000);
 export {
   scene
 };

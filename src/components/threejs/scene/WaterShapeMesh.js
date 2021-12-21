@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-18 09:42:42
- * @LastEditTime: 2021-12-16 17:06:32
+ * @LastEditTime: 2021-12-21 11:23:55
  * @LastEditors: janasluo
  * @Description: 江河ShapeGeometry带水波纹理贴图及波纹动效
  */
@@ -78,6 +78,7 @@ material.onBeforeCompile = function (shader) {
 
 // pointsArrs：多个多边形轮廓
 function WaterShapeMesh(pointsArrs) {
+  console.log('pointsArrs', pointsArrs)
   var shapeArr = []; //轮廓形状Shape集合
   pointsArrs.forEach(pointsArr => {
     var vector2Arr = [];
@@ -87,12 +88,13 @@ function WaterShapeMesh(pointsArrs) {
       vector2Arr.push(new THREE.Vector2(xy.x, xy.y));
     });
     var shape = new THREE.Shape(vector2Arr);
+    console.log('vector2Arr', vector2Arr)
     shapeArr.push(shape);
   });
   var geometry = new THREE.ShapeGeometry( //填充多边形
     shapeArr,
   );
-
+  console.log('ShapeGeometry', geometry)
   // 把UV坐标范围控制在[0,1]范围
   var pos = geometry.attributes.position; //顶点位置坐标
   var uv = geometry.attributes.uv; //顶点UV坐标
@@ -109,13 +111,13 @@ function WaterShapeMesh(pointsArrs) {
   var xL = xMax - xMin;
   var yL = yMax - yMin;
   // 根据多边形顶点坐标与最小值差值占最大值百分比，设置UV坐标大小 把UV坐标范围控制在[0,1]范围
-  for (var i = 0; i < count; i++) {
+  for (let i = 0; i < count; i++) {
     var uvx = (pos.getX(i) - xMin) / xL;
     var uvy = (pos.getY(i) - yMin) / yL;
     uv.setXY(i, uvx, uvy)
   }
-  console.log('控制台查看修改后的UV坐标', geometry.attributes.uv.array)
-  console.log('控制台查看修改后的UV坐标', geometry.attributes.uv)
+  // console.log('控制台查看修改后的UV坐标', geometry.attributes.uv.array)
+  // console.log('控制台查看修改后的UV坐标', geometry.attributes.uv)
 
   //   多边形坐标进行排序
   function minMax(arr) {

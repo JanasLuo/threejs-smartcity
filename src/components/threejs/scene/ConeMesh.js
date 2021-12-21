@@ -3,7 +3,7 @@
  * @Date: 2021-11-20 15:01:16
  * @LastEditTime: 2021-12-17 18:08:41
  * @LastEditors: janasluo
- * @Description: 
+ * @Description:  旋转透明渐变棱锥
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/ConeMesh.js
  */
 // 引入three.js
