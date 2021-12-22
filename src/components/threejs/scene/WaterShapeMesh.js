@@ -78,7 +78,6 @@ material.onBeforeCompile = function (shader) {
 
 // pointsArrs：多个多边形轮廓
 function WaterShapeMesh(pointsArrs) {
-  console.log('pointsArrs', pointsArrs)
   var shapeArr = []; //轮廓形状Shape集合
   pointsArrs.forEach(pointsArr => {
     var vector2Arr = [];
@@ -88,13 +87,11 @@ function WaterShapeMesh(pointsArrs) {
       vector2Arr.push(new THREE.Vector2(xy.x, xy.y));
     });
     var shape = new THREE.Shape(vector2Arr);
-    console.log('vector2Arr', vector2Arr)
     shapeArr.push(shape);
   });
   var geometry = new THREE.ShapeGeometry( //填充多边形
     shapeArr,
   );
-  console.log('ShapeGeometry', geometry)
   // 把UV坐标范围控制在[0,1]范围
   var pos = geometry.attributes.position; //顶点位置坐标
   var uv = geometry.attributes.uv; //顶点UV坐标

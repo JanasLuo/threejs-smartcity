@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-12-16 17:21:13
- * @LastEditTime: 2021-12-21 10:34:51
+ * @LastEditTime: 2021-12-22 23:28:42
  * @LastEditors: janasluo
  * @Description: 雷达扫描图
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/radarGroup.js
@@ -27,7 +27,6 @@ function createRadarGroup() {
   var mesh = new THREE.Mesh(geometry, material);
 
 
-  console.log('createRadarGroup geometry', geometry)
   var material2 = new THREE.MeshLambertMaterial({
     color: 0x00cccc,
     map: new THREE.TextureLoader().load('./雷达刻度.png'),
@@ -50,7 +49,6 @@ function createRadarGroup() {
   // 设置坐标
   radarGroup.position.set(x, y, 0);
   // radarGroup.scale.set(10, 10, 10);
-  console.log('radarGroup', radarGroup)
   // 旋转扫描动画
   function rotateAnimation() {
     mesh.rotateZ(0.02);

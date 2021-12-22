@@ -60,7 +60,7 @@ export default {
       var label = new CSS3DSprite(div); //HTML标签对象 类似Sprite
       // CSS3标签HTML元素渲染大小由自身像素尺寸和scale属性决定
       var w = div.offsetWidth; //获取标签HTML元素宽度
-      console.log("w", w);
+      // console.log("w", w);
       label.scale.set(size / w, size / w, size / w); //缩放CSS3DObject模型对象
       // 设置HTML元素标签位置
       // label.position.set(x, y, z);

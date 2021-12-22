@@ -44,7 +44,6 @@ loader.load('./外滩街道边界.json', function (data) {
 })
 
 function createRadarGroup(c) {
-  console.log('c', c)
   var posArr = [];
   var uvrr = [];
   var h = 100; //围墙拉伸高度

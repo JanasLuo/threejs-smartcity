@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-18 09:42:42
- * @LastEditTime: 2021-12-22 22:52:36
+ * @LastEditTime: 2021-12-22 23:31:21
  * @LastEditors: janasluo
  * @Description: 地铁公路流线
  */
@@ -11,44 +11,48 @@ import output_fragment from './shader/line_fragment.glsl.js'
 import {
   lon2xy
 } from './math.js';
-var lineGroup = new THREE.Group(); //声明一个组对象
-var loader = new THREE.FileLoader();
-loader.setResponseType('json')
-//轨迹线数据解析W
-loader.load('./上海主城区地铁.json', function (data) {
-  data.features.forEach(function (feature) {
-    var pointsArr = [];
-    var flypointsArr = [];
-    const obj = feature.geometry
-    if (obj.type === 'LineString') {
-      obj.coordinates.forEach(function (coord) {
-        //经纬度转墨卡托
-        var xy = lon2xy(coord[0], coord[1]);
-        pointsArr.push(xy.x, xy.y, 0);
-        flypointsArr.push([xy.x, xy.y]);
-      })
-    }
-    if (obj.type === 'MultiLineString') {
-
-      obj.coordinates.forEach(function (coordinates) {
-
-        coordinates.forEach(coord => {
+function rendeLineGroup() {
+  var lineGroup = new THREE.Group(); //声明一个组对象
+  var loader = new THREE.FileLoader();
+  loader.setResponseType('json')
+  //轨迹线数据解析W
+  loader.load('./上海主城区地铁.json', function (data) {
+    data.features.forEach(function (feature) {
+      var pointsArr = [];
+      var flypointsArr = [];
+      const obj = feature.geometry
+      if (obj.type === 'LineString') {
+        obj.coordinates.forEach(function (coord) {
           //经纬度转墨卡托
           var xy = lon2xy(coord[0], coord[1]);
           pointsArr.push(xy.x, xy.y, 0);
           flypointsArr.push([xy.x, xy.y]);
         })
+      }
+      if (obj.type === 'MultiLineString') {
 
-      })
-    }
+        obj.coordinates.forEach(function (coordinates) {
 
-    var line = createLine(pointsArr); //创建一条轨迹线
-    lineGroup.add(line);
-    var flyPoints = createfly(flypointsArr); //创建一条流线
-    lineGroup.add(flyPoints);
-  })
+          coordinates.forEach(coord => {
+            //经纬度转墨卡托
+            var xy = lon2xy(coord[0], coord[1]);
+            pointsArr.push(xy.x, xy.y, 0);
+            flypointsArr.push([xy.x, xy.y]);
+          })
 
-});
+        })
+      }
+
+      var line = createLine(pointsArr); //创建一条轨迹线
+      lineGroup.add(line);
+      var flyPoints = createfly(flypointsArr); //创建一条流线
+      lineGroup.add(flyPoints);
+    })
+
+  });
+  return lineGroup
+}
+
 // 通过一系列坐标点生成一条轨迹线
 function createLine(pointsArr) {
   /**
@@ -167,5 +171,5 @@ function createfly(flypointsArr) {
   return flyPoints
 }
 export {
-  lineGroup
+  rendeLineGroup
 };

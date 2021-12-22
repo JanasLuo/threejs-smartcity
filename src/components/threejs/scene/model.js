@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-21 18:27:03
+ * @LastEditTime: 2021-12-22 23:32:25
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
@@ -30,7 +30,7 @@ import {
   wallGroup as wallGroup2
 } from './wallGroup2.js';
 import {
-  lineGroup
+  rendeLineGroup
 } from './line.js';
 
 var model = new THREE.Group(); //声明一个组对象，用来添加城市三场场景的模型对象
@@ -71,7 +71,10 @@ model.add(wallGroup)
 
 model.add(wallGroup2)
 
-model.add(lineGroup)
+// setTimeout(() => {
+//   model.add(rendeLineGroup())
+// }, 5000)
+model.add(rendeLineGroup())
 
 export {
   model

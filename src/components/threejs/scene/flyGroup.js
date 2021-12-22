@@ -31,7 +31,7 @@ var flyGroup = new THREE.Group() // 一架无人机
 var LightSphereMesh = createLightSphereMesh(120);
 flyGroup.add(LightSphereMesh);
 var SignalMesh = createSignalMesh();
-console.log('SignalMesh', SignalMesh)
+// console.log('SignalMesh', SignalMesh)
 flyGroup.add(SignalMesh);
 
 var mixer = null; //声明一个混合器变量
