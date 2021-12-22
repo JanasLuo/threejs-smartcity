@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-18 09:42:42
- * @LastEditTime: 2021-12-21 11:23:55
+ * @LastEditTime: 2021-12-21 18:27:54
  * @LastEditors: janasluo
  * @Description: 江河ShapeGeometry带水波纹理贴图及波纹动效
  */
@@ -10,7 +10,7 @@ import * as THREE from 'three';
 import {
   lon2xy
 } from './math.js';
-import output_fragment from './output_fragment2.glsl.js'
+import output_fragment from './shader/output_fragment2.glsl.js'
 
 // 水面颜色贴图
 var texture = new THREE.TextureLoader().load('./水面.jpg');

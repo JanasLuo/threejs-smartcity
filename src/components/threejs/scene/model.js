@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2021-12-17 18:10:50
+ * @LastEditTime: 2021-12-21 18:27:03
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
@@ -29,7 +29,9 @@ import {
 import {
   wallGroup as wallGroup2
 } from './wallGroup2.js';
-
+import {
+  lineGroup
+} from './line.js';
 
 var model = new THREE.Group(); //声明一个组对象，用来添加城市三场场景的模型对象
 var loader = new THREE.FileLoader();
@@ -66,7 +68,11 @@ var ConeMesh = createConeMesh(40, lon2xy(121.49726536464691, 31.24119350905988),
 model.add(ConeMesh);
 
 model.add(wallGroup)
+
 model.add(wallGroup2)
+
+model.add(lineGroup)
+
 export {
   model
 }

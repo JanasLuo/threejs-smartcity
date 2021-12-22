@@ -15,7 +15,7 @@ import {
 import {
   lon2xy
 } from './math.js';
-import output_fragment from './output_fragment.glsl.js'
+import output_fragment from './shader/bulid_fragment.glsl.js'
 // MeshBasicMaterial:不受光照影响
 // MeshLambertMaterial：几何体表面和光线角度不同，明暗不同
 var material = new THREE.MeshLambertMaterial({

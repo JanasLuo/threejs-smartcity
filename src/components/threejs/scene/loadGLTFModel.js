@@ -8,7 +8,7 @@
  */
 // 引入Three.js
 import * as THREE from 'three';
-import output_fragment from './output_fragment.glsl.js'
+import output_fragment from './shader/bulid_fragment.glsl.js'
 // 引入gltf模型加载库GLTFLoader.js
 import {
   GLTFLoader
