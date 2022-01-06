@@ -35,6 +35,7 @@
         "
       >
         <button  id="exportGLTF" style="margin-right: 10px;">导出模型</button>
+        <input type="color" v-on:change="changePolygonColor">
         <div
           style="
             background: rgba(255, 0, 0, 0);
@@ -105,8 +106,13 @@
 </template>
 
 <script>
+import * as THREE from 'three';
 import  { exportGLTF } from './threejs/scene/exportGLTF.js'
 import  { model } from './threejs/scene/model.js'
+import {
+  PolygonMesh,
+  material as polygonMaterial
+} from './threejs/scene/PolygonMesh.js';
 export default {
   name: "PageHeader",
   mounted: function () {
@@ -114,6 +120,13 @@ export default {
     button.addEventListener('click',function(){
       exportGLTF(model);
     })
+  },
+  methods: {
+    changePolygonColor(e) {
+      const color = e.target.value
+      console.log(color)
+      polygonMaterial.color = new THREE.Color(color)
+    }
   },
 };
 </script>
