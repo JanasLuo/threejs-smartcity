@@ -1,13 +1,14 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 20:34:20
- * @LastEditTime: 2022-01-04 16:02:31
+ * @LastEditTime: 2022-01-06 18:00:05
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/model.js
  */
 // 引入Three.js
 import * as THREE from 'three';
+
 import {
   lon2xy
 } from './math.js';
@@ -15,7 +16,8 @@ import {
   WaterShapeMesh
 } from './WaterShapeMesh.js';
 import {
-  PolygonMesh
+  PolygonMesh,
+  material as polygonMaterial
 } from './PolygonMesh.js';
 import {
   ExtrudeMesh
@@ -82,25 +84,36 @@ setTimeout(() => {
 // model.add(rendeLineGroup())
 
 // 绿地
-loaderPolygon('./黄浦区_绿地.json', '黄浦区_绿地', 0x6ac508)
+loaderPolygon('./黄浦区_绿地.json', '黄浦区_绿地', 0xff0000)
 
 function loaderPolygon(url, name, color) {
   loader.load('./黄浦区_绿地.json', function (data) {
-    var buildGroup = new THREE.Group(); //作为所有每栋楼Mesh的父对象
-    data.features.forEach(build => {
-      if (build.geometry) {
-        // build.geometry.type === "Polygon"表示建筑物底部包含一个多边形轮廓
-        //build.geometry.type === "MultiPolygon"表示建筑物底部包含多个多边形轮廓
-        if (build.geometry.type === "Polygon") {
-          // 把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
-          build.geometry.coordinates = [build.geometry.coordinates];
-        }
-        var mesh = PolygonMesh(build.geometry.coordinates, color)
-        mesh.name = name;//设置name属性，模型导出的时候，可以携带该信息
-        buildGroup.add(mesh);
-      }
-    });
-    model.add(buildGroup);
+    var mesh = PolygonMesh(data, color)
+    // var buildGroup = new THREE.Group(); //作为所有每栋楼Mesh的父对象
+    // var geoArr = []; //所有建筑物的几何体集合
+    // data.features.forEach(build => {
+    //   if (build.geometry) {
+    //     // build.geometry.type === "Polygon"表示建筑物底部包含一个多边形轮廓
+    //     //build.geometry.type === "MultiPolygon"表示建筑物底部包含多个多边形轮廓
+    //     if (build.geometry.type === "Polygon") {
+    //       // 把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
+    //       build.geometry.coordinates = [build.geometry.coordinates];
+    //     }
+    //     geoArr.push(PolygonGeometry(build.geometry.coordinates))
+    //   }
+    // });
+    // var material = new THREE.MeshLambertMaterial({
+    //   color, //颜色s
+    // });
+    // // 所有几何体合并为一个几何体
+    // var geometry = mergeBufferGeometries(geoArr);
+    // var mesh = new THREE.Mesh(geometry, material); //网格模型对象
+    // mesh.name = name;//设置name属性，模型导出的时候，可以携带该信息
+    model.add(mesh);
+    setTimeout(() => {
+      polygonMaterial.color = new THREE.Color(0x6ac508)
+      console.log('mesh 黄浦区_绿地 ', mesh)
+    }, 2000)
   });
 }
 export {
