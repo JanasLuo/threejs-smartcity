@@ -2,7 +2,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-18 09:42:42
- * @LastEditTime: 2022-01-04 16:00:18
+ * @LastEditTime: 2022-01-06 18:00:53
  * @LastEditors: janasluo
  * @Description: 根据geojson polygon数据绘制shape多边形
  */
@@ -11,17 +11,35 @@ import * as THREE from 'three';
 import {
   lon2xy
 } from './math.js';
+import {
+  mergeBufferGeometries
+} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
-
-
-// pointsArrs：多个多边形轮廓
-function PolygonMesh(pointsArrs, color) {
-
-  // MeshBasicMaterial:不受光照影响
-  // MeshLambertMaterial：几何体表面和光线角度不同，明暗不同
-  var material = new THREE.MeshLambertMaterial({
-    color, //颜色
+var material
+function PolygonMesh(data, color) {
+  var geoArr = []; //所有建筑物的几何体集合
+  data.features.forEach(build => {
+    if (build.geometry) {
+      // build.geometry.type === "Polygon"表示建筑物底部包含一个多边形轮廓
+      //build.geometry.type === "MultiPolygon"表示建筑物底部包含多个多边形轮廓
+      if (build.geometry.type === "Polygon") {
+        // 把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
+        build.geometry.coordinates = [build.geometry.coordinates];
+      }
+      geoArr.push(PolygonGeometry(build.geometry.coordinates))
+    }
   });
+  material = new THREE.MeshLambertMaterial({
+    color, //颜色s
+  });
+  // 所有几何体合并为一个几何体
+  var geometry = mergeBufferGeometries(geoArr);
+  var mesh = new THREE.Mesh(geometry, material); //网格模型对象
+  mesh.name = name;//设置name属性，模型导出的时候，可以携带该信息
+  return mesh;
+}
+function PolygonGeometry(pointsArrs) {
+
   var shapeArr = []; //轮廓形状Shape集合
   pointsArrs.forEach(pointsArr => {
     var vector2Arr = [];
@@ -36,9 +54,8 @@ function PolygonMesh(pointsArrs, color) {
   var geometry = new THREE.ShapeGeometry( //填充多边形
     shapeArr,
   );
-  var mesh = new THREE.Mesh(geometry, material); //网格模型对象
-  return mesh;
+  return geometry;
 }
 export {
-  PolygonMesh
+  PolygonMesh, material
 };
