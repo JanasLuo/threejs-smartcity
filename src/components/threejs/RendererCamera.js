@@ -1,3 +1,10 @@
+/*
+ * @Author: janasluo
+ * @Date: 2021-11-17 18:46:52
+ * @LastEditTime: 2022-05-10 18:31:14
+ * @LastEditors: janasluo
+ * @Description: 
+ */
 // 引入Three.js
 import * as THREE from 'three';
 // 引入Three.js扩展库
@@ -48,7 +55,7 @@ renderer.setClearColor(0x001111, 1); //设置背景颜色
 // 缩放：滚动鼠标中键
 // 平移：拖动鼠标右键
 var controls = new OrbitControls(camera, renderer.domElement);
-
+// controls.enableDamping = true // 阻尼动画
 // 相机控件与.lookAt()无效( .target属性 )
 controls.target.set(x, y, 0);
 controls.update(); //update()函数内会执行camera.lookAt(controls.targe)
@@ -67,5 +74,5 @@ window.onresize = function () {
 export {
   renderer,
   camera,
-  // controls
+  controls
 };

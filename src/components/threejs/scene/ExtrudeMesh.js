@@ -1,7 +1,7 @@
 /*
  * @Author: janasluo
  * @Date: 2021-11-17 18:01:08
- * @LastEditTime: 2021-12-20 16:22:07
+ * @LastEditTime: 2022-03-15 23:16:28
  * @LastEditors: janasluo
  * @Description: 
  * @FilePath: /test/Users/janas/work/project/threejs/threejs-smartcity/src/components/threejs/scene/ExtrudeMesh.js
@@ -66,8 +66,12 @@ function ExtrudeMesh(data) {
   });
 
   // 所有几何体合并为一个几何体
+  console.log('geoArr', geoArr)
+
   var geometry = mergeBufferGeometries(geoArr);
+  console.log('merge geometry', geometry)
   var mesh = new THREE.Mesh(geometry, material); //网格模型对象
+  console.log('mesh', mesh)
   return mesh;
 }
 
@@ -84,8 +88,7 @@ function ExtrudeGeo(pointsArrs, height) {
     var shape = new THREE.Shape(vector2Arr);
     shapeArr.push(shape);
   });
-
-  var geometry = new THREE.ExtrudeGeometry( //拉伸造型
+  var geometry = new THREE.ExtrudeBufferGeometry( //拉伸造型
     shapeArr, //多个多边形二维轮廓
     //拉伸参数
     {
